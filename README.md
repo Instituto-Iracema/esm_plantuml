@@ -1,2 +1,3 @@
-# esm_plantuml
-Extended State Machine diagram's lib for plantuml
+# Extende State Machine Diagram for PlantUML
+
+TODO: Explain what this is all about...

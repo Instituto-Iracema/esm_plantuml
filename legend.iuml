@@ -1,0 +1,38 @@
+@startuml Legend
+
+!include definitions_esm.iuml
+
+!include <archimate/Archimate>
+
+skinparam LegendBackgroundColor #AZURE
+' skinparam LegendFontSize 20
+skinparam LegendFontName Monospaced
+
+sprite $solid_arrow jar:archimate/used-by
+sprite $dashed_arrow jar:archimate/flow
+sprite $dotted_arrow jar:archimate/access
+
+!$dashed = "<back:#black>  </back><back:#AZURE> </back><back:#black>  </back><back:#AZURE> </back><back:#black>  </back>"
+!$dotted = "<back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back>"
+
+legend bottom left
+    = Legenda
+    |= Cor |= Tipo |= Descrição |
+    | <back:#$color_interrupt>        </back> | <interrupt> | Interrupção gerada pelo sistema |
+    | <back:#$color_thread>        </back> | <thread> | Thread ou Task do RTOS |
+    | <back:#$color_superstate>        </back> | <super-state> | Super Estado (Estado que contém Estados) |
+    | <back:#$color_state>        </back> | <state> | Estado |
+    | <back:#$color_external_state>        </back> | <external-state> | Estado Externo (Definido em Outro Local) |
+    | <back:#$color_external_state>        </back> | <external-thread> | Thread Externa (Definida em Outro Local) |
+    | <back:#$color_operation>        </back> | <operation> | Operação |
+    | <back:#$color_start_thread>        </back> | <thread-start> | Operação de Instanciamento e Inicio de uma nova Thread |
+    | <back:#$color_message>        </back> | <message-send> | Operação de Envio de Mensagem Para outra Thread |
+    | <back:#black>        </back> | <$solid_arrow> | Transição de Estado |
+    | $dashed | <$dashed_arrow> | Envio de Mensagem |
+    | $dotted | <$dotted_arrow> | Inicio de nova Thread |
+
+    ' * **Pseudo-Estados** São Detalhes de Implementação para Facilitar a vizualização, não 
+    ' necessariamente sendo implementados como estados na prática \t\t\t
+endlegend
+
+@enduml
