@@ -1,19 +1,15 @@
 @startuml Definitions
 
-skinparam NoteTextAlignment left
+!include colors.iuml
 
-!$color_thread = "CadetBlue"
-!$color_interrupt = "LightSlateGray"
-!$color_start_thread = "PaleVioletRed"
-!$color_external_state = "LightGray"
-!$color_state = "CornflowerBlue"
-!$color_superstate = "MediumSeaGreen"
-!$color_operation = "MediumPurple"
-!$color_message = "DarkKhaki"
-!$color_todo = "Yellow"
+skinparam NoteTextAlignment left
 
 !unquoted procedure $thread($var_name, $title, $color=$color_thread)
     state $var_name as "<<thread>>\n<b>$title</b>" #$color
+!endprocedure
+
+!unquoted procedure $message_broker($var_name, $title, $color=$color_message_broker)
+    state $var_name as "<<mesage-broker>>\n<b>$title</b>" #$color
 !endprocedure
 
 !unquoted procedure $state($var_name, $title, $color=$color_state)

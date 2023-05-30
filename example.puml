@@ -1,0 +1,8 @@
+@startuml
+
+!include definitions_esm.iuml
+!include legend.iuml
+
+$legend(en, bottom, left)
+
+@enduml

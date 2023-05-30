@@ -1,25 +1,74 @@
 @startuml Legend
 
+' INCLUDES
 !include definitions_esm.iuml
-
+!include strings.iuml
 !include <archimate/Archimate>
 
-skinparam LegendBackgroundColor #AZURE
+' SKINPARAMS
+skinparam LegendBackgroundColor #$legend_background_color
 ' skinparam LegendFontSize 20
 skinparam LegendFontName Monospaced
 
+' SPRITES
 sprite $solid_arrow jar:archimate/used-by
 sprite $dashed_arrow jar:archimate/flow
 sprite $dotted_arrow jar:archimate/access
 
-!$dashed = "<back:#black>  </back><back:#AZURE> </back><back:#black>  </back><back:#AZURE> </back><back:#black>  </back>"
-!$dotted = "<back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back><back:#black> </back><back:#AZURE> </back>"
+' LINE DEFINITIONS ON LEGEND
+!function $text_color_background_pattern($foreground_color, $background_color, \
+                $size_foreground, $size_background, $repetitions)
+    !$alt = 0
+    !$ret = ""
+    !$repetitions = $repetitions * 2
+    !while $repetitions > 0
+        !if ($alt == 0)
+            !if ($size_foreground > 0)
+                !$ret = $ret + "<back:#" + $foreground_color + ">"
+                !$i = $size_foreground
+                !while $i > 0
+                    !$ret = $ret + " "
+                    !$i = $i - 1
+                !endwhile
+                !$ret = $ret + "</back>"
+            !endif
+            !$alt = 1
+        !else
+            !if ($size_background > 0)
+                !$ret = $ret + "<back:#" + $background_color + ">"
+                !$i = $size_background
+                !while $i > 0
+                    !$ret = $ret + " "
+                    !$i = $i -1
+                !endwhile
+                !$ret = $ret + "</back>"
+            !endif
+            !$alt = 0
+        !endif
+        !$repetitions = $repetitions - 1
+    !endwhile
+    !return $ret
+!endfunction
 
-legend bottom left
-    = Legenda
-    |= Cor |= Tipo |= Descrição |
+!function $solid_color_pattern($color, $size)
+    !return $text_color_background_pattern($color, "black", 1, 0, $size)
+!endfunction
+
+!function $dashed_color_pattern($foreground_color, $background_color, $size)
+    !return $text_color_background_pattern($foreground_color, $background_color, 2, 1, $size)
+!endfunction
+
+!function $dotted_color_pattern($foreground_color, $background_color, $size)
+    !return $text_color_background_pattern($foreground_color, $background_color, 1, 1, $size)
+!endfunction
+
+!unquoted procedure $legend($lang, $position_vertical, $position_horizontal)
+    legend $position_vertical $position_horizontal
+    = $strings_legend_components[title][$lang]
+    |= $strings_legend_components[fields][color][$lang] |= $strings_legend_components[fields][type][$lang] |= $strings_legend_components[fields][description][$lang] |
     | <back:#$color_interrupt>        </back> | <interrupt> | Interrupção gerada pelo sistema |
     | <back:#$color_thread>        </back> | <thread> | Thread ou Task do RTOS |
+    | <back:#$color_message_broker>        </back> | <message-broker> | Special thread that routes messagens to their destinations |
     | <back:#$color_superstate>        </back> | <super-state> | Super Estado (Estado que contém Estados) |
     | <back:#$color_state>        </back> | <state> | Estado |
     | <back:#$color_external_state>        </back> | <external-state> | Estado Externo (Definido em Outro Local) |
@@ -27,12 +76,12 @@ legend bottom left
     | <back:#$color_operation>        </back> | <operation> | Operação |
     | <back:#$color_start_thread>        </back> | <thread-start> | Operação de Instanciamento e Inicio de uma nova Thread |
     | <back:#$color_message>        </back> | <message-send> | Operação de Envio de Mensagem Para outra Thread |
-    | <back:#black>        </back> | <$solid_arrow> | Transição de Estado |
-    | $dashed | <$dashed_arrow> | Envio de Mensagem |
-    | $dotted | <$dotted_arrow> | Inicio de nova Thread |
+    | $solid_color_pattern($arrow_color, 8) | <$solid_arrow> | Transição de Estado |
+    | $dashed_color_pattern($arrow_color, $legend_background_color, 3) | <$dashed_arrow> | Envio de Mensagem |
+    | $dashed_color_pattern($color_message_broker, $legend_background_color, 3) | <$dashed_arrow> | Envio de Mensagem através do encaminhador de mensagens|
+    | $dotted_color_pattern($arrow_color, $legend_background_color, 4) | <$dotted_arrow> | Inicio de nova Thread |
 
-    ' * **Pseudo-Estados** São Detalhes de Implementação para Facilitar a vizualização, não 
-    ' necessariamente sendo implementados como estados na prática \t\t\t
-endlegend
+    endlegend
+!endprocedure
 
 @enduml

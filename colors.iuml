@@ -1,0 +1,17 @@
+@startuml
+
+!$color_thread = "CadetBlue"
+!$color_message_broker = "LightSalmon"
+!$color_interrupt = "LightSlateGray"
+!$color_start_thread = "PaleVioletRed"
+!$color_external_state = "LightGray"
+!$color_state = "CornflowerBlue"
+!$color_superstate = "MediumSeaGreen"
+!$color_operation = "MediumPurple"
+!$color_message = "DarkKhaki"
+!$color_todo = "Yellow"
+
+!$arrow_color = "Black"
+!$legend_background_color = "Azure"
+
+@enduml
