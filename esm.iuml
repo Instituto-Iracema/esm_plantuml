@@ -1,8 +1,8 @@
 @startuml Definitions
 
-!include colors.iuml
-!include strings.iuml
-!include legend.iuml
+!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/colors.iuml
+!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
+!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/legend.iuml
 
 skinparam NoteTextAlignment left
 
