@@ -1,8 +1,32 @@
 @startuml
 
-!include definitions_esm.iuml
-!include legend.iuml
+!include esm.iuml
+' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/esm.iuml
 
-$legend(en, bottom, left)
+$thread("This is a Thread", \
+    "It Represenst a Task on The RTOS;" + \
+    "Or a Thread on the OS" \
+)
+
+$message_broker("This is a Message Broker", \
+    "A special thread that receives all the messages;" + \
+    "And send them to the correct threads" \
+)
+
+$superstate("This is a SuperState") {
+    $state("This is a State", \
+        "A normal state for a normal State Diagram;" + \
+        "That Can be inside a superstate" \
+    )
+
+    $operation("This is an Operation", "An Operation is a implementation\n" + \
+    "That too small to be a state")
+}
+
+$message("This is a Message", \
+    "A message is an object passed\nfrom a thread to another" \
+    )
+
+$legend()
 
 @enduml

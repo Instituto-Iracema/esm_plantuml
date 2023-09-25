@@ -1,0 +1,83 @@
+@startuml Definitions
+
+!include colors.iuml
+!include strings.iuml
+!include legend.iuml
+
+skinparam NoteTextAlignment left
+
+' Just a helper function to conver spaces to underlines
+!function $_convert_spaces_to_underline($name)
+    !$ret = ""
+    !$list = %splitstr($name, " ")
+
+    !foreach $word in $list
+        !$ret = $ret + $word + "_"
+    !endfor
+
+    !return %substr($ret, 0, %size($ret) - 1)
+!endfunction
+
+' Generic procedure to create any element of the ESM Diagram,
+' for internal use
+!procedure $_create_element($element_name, $title, $color, $comments="", \
+    $var_name="", $lang=en)
+    !if (%size($var_name) == 0)
+        !$var_name = %lower($_convert_spaces_to_underline($title))
+    !endif
+    state $var_name as \
+        "<<$strings_elements[$element_name][name][$lang]>>\n<b>$title</b>" \
+        #$color
+    !if (%size($comments0) > 0)
+        !foreach $comment in %splitstr($comments, ";")
+            $var_name : * $comment
+        !endfor
+    !endif
+!endprocedure
+
+' Procedure for creating a Thread
+!procedure $thread($title, $comments="", $var_name="", $lang="en")
+    $_create_element("thread", $title, $color_thread, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $message_broker($title, $comments="", $var_name="", $lang="en")
+    $_create_element("message_broker", $title, $color_message_broker, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $state($title, $comments="", $var_name="", $lang="en")
+    $_create_element("state", $title, $color_state, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $superstate($title, $comments="", $var_name="", $lang="en")
+    $_create_element("superstate", $title, $color_superstate, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $operation($title, $comments="", $var_name="", $lang="en")
+    $_create_element("operation", $title, $color_operation, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $todo($message, $color=$color_todo, $lang=en)
+    <b><back:Yellow>TODO: $message </back></b>
+!endprocedure
+
+!procedure $externalthread($title, $comments="", $var_name="", $lang="en")
+    $_create_element("external_thread", $title, $color_external_thread, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $externalstate($title, $comments="", $var_name="", $lang="en")
+    $_create_element("external_state", $title, $color_external_state, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $message($title, $comments="", $var_name="", $lang="en")
+    $_create_element("message", $title, $color_message, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $threadstart($title, $comments="", $var_name="", $lang="en")
+    $_create_element("start_thread", $title, $color_start_thread, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $interrupt($title, $comments="", $var_name="", $lang="en")
+    $_create_element("interrupt", $title, $color_interrupt, $comments, $var_name, $lang)
+!endprocedure
+
+@enduml

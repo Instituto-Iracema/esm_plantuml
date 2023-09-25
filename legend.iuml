@@ -1,7 +1,6 @@
 @startuml Legend
 
 ' INCLUDES
-!include definitions_esm.iuml
 !include strings.iuml
 !include <archimate/Archimate>
 
@@ -62,24 +61,24 @@ sprite $dotted_arrow jar:archimate/access
     !return $text_color_background_pattern($foreground_color, $background_color, 1, 1, $size)
 !endfunction
 
-!unquoted procedure $legend($lang, $position_vertical, $position_horizontal)
+!unquoted procedure $legend($position_vertical=bottom, $position_horizontal=left, $lang=en)
     legend $position_vertical $position_horizontal
     = $strings_legend_components[title][$lang]
     |= $strings_legend_components[fields][color][$lang] |= $strings_legend_components[fields][type][$lang] |= $strings_legend_components[fields][description][$lang] |
-    | <back:#$color_interrupt>        </back> | <interrupt> | Interrupção gerada pelo sistema |
-    | <back:#$color_thread>        </back> | <thread> | Thread ou Task do RTOS |
-    | <back:#$color_message_broker>        </back> | <message-broker> | Special thread that routes messagens to their destinations |
-    | <back:#$color_superstate>        </back> | <super-state> | Super Estado (Estado que contém Estados) |
-    | <back:#$color_state>        </back> | <state> | Estado |
-    | <back:#$color_external_state>        </back> | <external-state> | Estado Externo (Definido em Outro Local) |
-    | <back:#$color_external_state>        </back> | <external-thread> | Thread Externa (Definida em Outro Local) |
-    | <back:#$color_operation>        </back> | <operation> | Operação |
-    | <back:#$color_start_thread>        </back> | <thread-start> | Operação de Instanciamento e Inicio de uma nova Thread |
-    | <back:#$color_message>        </back> | <message-send> | Operação de Envio de Mensagem Para outra Thread |
-    | $solid_color_pattern($arrow_color, 8) | <$solid_arrow> | Transição de Estado |
-    | $dashed_color_pattern($arrow_color, $legend_background_color, 3) | <$dashed_arrow> | Envio de Mensagem |
-    | $dashed_color_pattern($color_message_broker, $legend_background_color, 3) | <$dashed_arrow> | Envio de Mensagem através do encaminhador de mensagens|
-    | $dotted_color_pattern($arrow_color, $legend_background_color, 4) | <$dotted_arrow> | Inicio de nova Thread |
+    | <back:#$color_interrupt>        </back> | <$strings_elements[interrupt][name][$lang]> | $strings_elements[interrupt][description][$lang] |
+    | <back:#$color_thread>        </back> | <$strings_elements[thread][name][$lang]> | $strings_elements[thread][description][$lang] |
+    | <back:#$color_message_broker>        </back> | <$strings_elements[message_broker][name][$lang]> | $strings_elements[message_broker][description][$lang] |
+    | <back:#$color_superstate>        </back> | <$strings_elements[superstate][name][$lang]> | $strings_elements[superstate][description][$lang] |
+    | <back:#$color_state>        </back> | <$strings_elements[state][name][$lang]> | $strings_elements[state][description][$lang] |
+    | <back:#$color_external_state>        </back> | <$strings_elements[external_state][name][$lang]> | $strings_elements[external_state][description][$lang] |
+    | <back:#$color_external_state>        </back> | <$strings_elements[external_thread][name][$lang]> | $strings_elements[external_thread][description][$lang] |
+    | <back:#$color_operation>        </back> | <$strings_elements[operation][name][$lang]> | $strings_elements[operation][description][$lang] |
+    | <back:#$color_start_thread>        </back> | <$strings_elements[start_thread][name][$lang]> | $strings_elements[start_thread][description][$lang] |
+    | <back:#$color_message>        </back> | <$strings_elements[message][name][$lang]> | $strings_elements[message][description][$lang] |
+    | $solid_color_pattern($arrow_color, 8) | <$solid_arrow> | $strings_elements[arrow_solid][description][$lang] |
+    | $dashed_color_pattern($arrow_color, $legend_background_color, 3) | <$dashed_arrow> | $strings_elements[arrow_message][description][$lang] |
+    | $dashed_color_pattern($color_message_broker, $legend_background_color, 3) | <color:$color_message_broker><$dashed_arrow> | $strings_elements[arrow_message_broker][description][$lang] |
+    | $dotted_color_pattern($arrow_color, $legend_background_color, 4) | <$dotted_arrow> | $strings_elements[arrow_thread_start][description][$lang] |
 
     endlegend
 !endprocedure
