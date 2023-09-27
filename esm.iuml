@@ -4,6 +4,8 @@
 !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
 !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/legend.iuml
 
+' !include colors.iuml
+
 skinparam NoteTextAlignment left
 
 ' Just a helper function to conver spaces to underlines
@@ -33,6 +35,34 @@ skinparam NoteTextAlignment left
             $var_name : * $comment
         !endfor
     !endif
+!endprocedure
+
+!procedure $_create_arrow($arrow_type, $source, $destination, $comment="")
+    !$thickness = 1
+    !$color = $arrow_color
+    !$line_mode = ""
+    !$full_comment = ""
+    !if ($arrow_type == "transition")
+        !$thickness = 1
+        !$color = $arrow_color
+        !$line_mode = ""
+    !elseif ($arrow_type == "message")
+        !$thickness = 1
+        !$color = $arrow_color
+        !$line_mode = "dashed,"
+    !elseif ($arrow_type == "message_broker")
+        !$thickness = 2
+        !$color = $color_message_broker
+        !$line_mode = "dashed,"
+    !elseif ($arrow_type == "start_thread")
+        !$thickness = 1
+        !$color = $arrow_color
+        !$line_mode = "dotted,"
+    !endif
+    !if ($comment != "")
+        !$full_comment = ": " + $comment
+    !endif
+    $source -[$line_mode#$color,thickness=$thickness]-> $destination $full_comment
 !endprocedure
 
 ' Procedure for creating a Thread
@@ -78,6 +108,22 @@ skinparam NoteTextAlignment left
 
 !procedure $interrupt($title, $comments="", $var_name="", $lang="en")
     $_create_element("interrupt", $title, $color_interrupt, $comments, $var_name, $lang)
+!endprocedure
+
+!procedure $arrow_transition($source, $destination, $comment="")
+    $_create_arrow("transition", $source, $destination, $comment)
+!endprocedure
+
+!procedure $arrow_message($source, $destination, $comment="")
+    $_create_arrow("message", $source, $destination, $comment)
+!endprocedure
+
+!procedure $arrow_message_broker($source, $destination, $comment="")
+    $_create_arrow("message_broker", $source, $destination, $comment)
+!endprocedure
+
+!procedure $arrow_start_thread($source, $destination, $comment="")
+    $_create_arrow("start_thread", $source, $destination, $comment)
 !endprocedure
 
 @enduml

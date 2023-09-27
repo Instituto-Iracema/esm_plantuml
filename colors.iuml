@@ -1,7 +1,7 @@
 @startuml
 
 !$color_thread = "CadetBlue"
-!$color_message_broker = "LightSalmon"
+!$color_message_broker = "Tomato"
 !$color_interrupt = "LightSlateGray"
 !$color_start_thread = "PaleVioletRed"
 !$color_external_state = "LightGray"

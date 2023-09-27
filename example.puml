@@ -1,7 +1,7 @@
 @startuml
 
-!include esm.iuml
-' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/esm.iuml
+' !include esm.iuml
+!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/esm.iuml
 
 $thread("This is a Thread", \
     "It Represenst a Task on The RTOS;" + \
@@ -26,6 +26,8 @@ $superstate("This is a SuperState") {
 $message("This is a Message", \
     "A message is an object passed\nfrom a thread to another" \
     )
+
+$arrow_message_broker(this_is_a_message, this_is_a_superstate, "Test")
 
 $legend()
 
