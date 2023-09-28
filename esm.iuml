@@ -1,10 +1,12 @@
 @startuml Definitions
 
-!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/colors.iuml
-!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
-!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/legend.iuml
+' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/colors.iuml
+' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
+' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/legend.iuml
 
-' !include colors.iuml
+!include colors.iuml
+!include strings.iuml
+!include legend.iuml
 
 skinparam NoteTextAlignment left
 
@@ -62,6 +64,8 @@ skinparam NoteTextAlignment left
     !if ($comment != "")
         !$full_comment = ": " + $comment
     !endif
+    ' !if ($source == "*")
+
     $source -[$line_mode#$color,thickness=$thickness]-> $destination $full_comment
 !endprocedure
 

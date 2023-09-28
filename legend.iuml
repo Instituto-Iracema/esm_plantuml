@@ -1,7 +1,9 @@
 @startuml Legend
 
 ' INCLUDES
-!include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
+' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
+!include strings.iuml
+
 !include <archimate/Archimate>
 
 ' SKINPARAMS
