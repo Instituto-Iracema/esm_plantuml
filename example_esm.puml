@@ -2,8 +2,10 @@
 
 ' !include esm.iuml
 ' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/esm.iuml
-!import esm_plantuml.zip
+
 !include esm.iuml
+
+' !$WORD_WRAP_SIZE = 30
 
 $thread("This is a Thread", \
     "It Represenst a Task on The RTOS;" + \

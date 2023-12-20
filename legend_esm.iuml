@@ -1,4 +1,4 @@
-@startuml Legend
+@startuml Legendcolor_arrow
 
 ' INCLUDES
 ' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
@@ -7,7 +7,7 @@
 !include <archimate/Archimate>
 
 ' SKINPARAMS
-skinparam LegendBackgroundColor #$legend_background_color
+skinparam LegendBackgroundColor #$color_legend_background
 ' skinparam LegendFontSize 20
 skinparam LegendFontName Monospaced
 
@@ -77,10 +77,10 @@ sprite $dotted_arrow jar:archimate/access
     | <back:#$color_operation>        </back> | <$strings_elements[operation][name][$lang]> | $strings_elements[operation][description][$lang] |
     | <back:#$color_start_thread>        </back> | <$strings_elements[start_thread][name][$lang]> | $strings_elements[start_thread][description][$lang] |
     | <back:#$color_message>        </back> | <$strings_elements[message][name][$lang]> | $strings_elements[message][description][$lang] |
-    | $solid_color_pattern($arrow_color, 8) | <$solid_arrow> | $strings_elements[arrow_solid][description][$lang] |
-    | $dashed_color_pattern($arrow_color, $legend_background_color, 3) | <$dashed_arrow> | $strings_elements[arrow_message][description][$lang] |
-    | $dashed_color_pattern($color_message_broker, $legend_background_color, 3) | <color:$color_message_broker><$dashed_arrow> | $strings_elements[arrow_message_broker][description][$lang] |
-    | $dotted_color_pattern($arrow_color, $legend_background_color, 4) | <$dotted_arrow> | $strings_elements[arrow_thread_start][description][$lang] |
+    | $solid_color_pattern($color_arrow, 8) | <$solid_arrow> | $strings_elements[arrow_solid][description][$lang] |
+    | $dashed_color_pattern($color_arrow, $color_legend_background, 3) | <$dashed_arrow> | $strings_elements[arrow_message][description][$lang] |
+    | $dashed_color_pattern($color_message_broker, $color_legend_background, 3) | <color:$color_message_broker><$dashed_arrow> | $strings_elements[arrow_message_broker][description][$lang] |
+    | $dotted_color_pattern($color_arrow, $color_legend_background, 4) | <$dotted_arrow> | $strings_elements[arrow_thread_start][description][$lang] |
 
     endlegend
 !endprocedure

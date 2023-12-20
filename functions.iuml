@@ -1,0 +1,39 @@
+@startuml
+
+' Wraps a text to a character limit per line
+!function $wrap2($text, $width=40)
+	!if %strlen($text) <= $width
+!$out = $text
+	!else
+		!$out = ""
+		!$pos = $width - 1
+		!$cut = ""
+		!while %strlen($text) > $width
+			!while $pos >= 0 && $cut == ""
+				!if %substr($text, $pos, 1) == " "
+					!$cut = $pos
+				!else
+					!$pos = $pos - 1
+				!endif
+			!endwhile
+			!if $pos < 0
+				!$out = $out + %substr($text, 0, $width - 1) + "<U+2936><U+2AFD>"
+				!$text = %substr($text, $width - 1, %strlen($text) - $width +1)
+			!else
+				!$out = $out + %substr($text, 0, $cut)
+				!$text = %substr($text, $cut +1, %strlen($text) - $cut)
+			!endif
+			!if %strlen($text) > 0
+				!$out = $out + "\n"
+			!endif
+			!$pos = $width - 1
+			!$cut = ""
+		!endwhile
+		!if %strlen($text) > 0
+			!$out = $out + $text
+		!endif
+	!endif
+!return $out
+!endfunction
+
+@enduml

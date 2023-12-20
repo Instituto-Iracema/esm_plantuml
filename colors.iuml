@@ -11,7 +11,7 @@
 !$color_message = "DarkKhaki"
 !$color_todo = "Yellow"
 
-!$arrow_color = "Black"
-!$legend_background_color = "Azure"
+!$color_arrow = "Black"
+!$color_legend_background = "Azure"
 
 @enduml

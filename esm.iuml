@@ -1,14 +1,13 @@
 @startuml Definitions
 
-' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/colors.iuml
-' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/strings.iuml
-' !include https://raw.githubusercontent.com/Instituto-Iracema/esm_plantuml/trunk/legend.iuml
-
 !include colors.iuml
 !include strings.iuml
-!include legend.iuml
+!include legend_esm.iuml
+!include functions.iuml
 
 skinparam NoteTextAlignment left
+
+!$WORD_WRAP_SIZE = 40
 
 ' Just a helper function to conver spaces to underlines
 !function $_convert_spaces_to_underline($name)
@@ -34,23 +33,23 @@ skinparam NoteTextAlignment left
         #$color
     !if (%size($comments0) > 0)
         !foreach $comment in %splitstr($comments, ";")
-            $var_name : * $comment
+            $var_name : $wrap2("*" + $comment, $WORD_WRAP_SIZE)
         !endfor
     !endif
 !endprocedure
 
 !procedure $_create_arrow($arrow_type, $source, $destination, $comment="")
     !$thickness = 1
-    !$color = $arrow_color
+    !$color = $color_arrow
     !$line_mode = ""
     !$full_comment = ""
     !if ($arrow_type == "transition")
         !$thickness = 1
-        !$color = $arrow_color
+        !$color = $color_arrow
         !$line_mode = ""
     !elseif ($arrow_type == "message")
         !$thickness = 1
-        !$color = $arrow_color
+        !$color = $color_arrow
         !$line_mode = "dashed,"
     !elseif ($arrow_type == "message_broker")
         !$thickness = 2
@@ -58,7 +57,7 @@ skinparam NoteTextAlignment left
         !$line_mode = "dashed,"
     !elseif ($arrow_type == "start_thread")
         !$thickness = 1
-        !$color = $arrow_color
+        !$color = $color_arrow
         !$line_mode = "dotted,"
     !endif
     !if ($comment != "")

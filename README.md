@@ -1,3 +1,3 @@
-# Extende State Machine Diagram for PlantUML
+# Extended State Machine Diagram for PlantUML
 
 TODO: Explain what this is all about...
